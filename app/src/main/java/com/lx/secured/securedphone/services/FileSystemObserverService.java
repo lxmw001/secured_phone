@@ -5,14 +5,13 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.lx.secured.securedphone.utils.WifiInfo;
+import com.lx.secured.securedphone.observers.FileObserver;
 
-public class MainService extends Service {
-
-    private static String TAG = MainService.class.toString();
+public class FileSystemObserverService extends Service {
+    private static String TAG = FileSystemObserverService.class.toString();
 
     @Override
-    public IBinder onBind(Intent arg0) {
+    public IBinder onBind(Intent intent) {
         return null;
     }
 
@@ -20,7 +19,10 @@ public class MainService extends Service {
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
         Log.d(TAG, "Service started");
-        WifiInfo.detectOpenWifi(getApplicationContext());
+//        String path = Environment.getExternalStorageDirectory().getPath();
+
+        FileObserver observer = new FileObserver("/storage/emulated/0/Download", getApplicationContext());
+        observer.startWatching(); //START OBSERVING
     }
 
     @Override

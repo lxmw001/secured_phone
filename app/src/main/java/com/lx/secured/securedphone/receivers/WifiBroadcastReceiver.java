@@ -9,14 +9,17 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
+import com.lx.secured.securedphone.activities.MainActivity;
+
 import java.util.List;
 
 public class WifiBroadcastReceiver extends BroadcastReceiver {
-    private static String TAG = "WifiBroadcastReceiver";
+    private static String TAG = WifiBroadcastReceiver.class.toString();
+    public static boolean stopFileObserver = false;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        System.out.println("check wifi conection");
+        Log.d(TAG, "Check wifi connection");
         String action = intent.getAction();
         if (WifiManager.SUPPLICANT_STATE_CHANGED_ACTION .equals(action)) {
             SupplicantState state = intent.getParcelableExtra(WifiManager.EXTRA_NEW_STATE);
@@ -26,17 +29,19 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
                 boolean isOpenWifi = checkConnectedToOpenWifi(context);
 
                 if(isOpenWifi) {
-                    //start service
-                    System.out.println("Check connections");
+                    Log.d(TAG, "Start file observer service");
+                    MainActivity.initFileObserverService();
+                    stopFileObserver = false;
                 } else {
-                    System.out.println("No Check connections");
-                    //stop serv
+                    Log.d(TAG, "Stop file observer service");
+                    MainActivity.stopFileObserverService();
+                    stopFileObserver = true;
                 }
             }
         }
     }
 
-    /** Detect you are connected to a open network. */
+    /** Detect if you are connected to a open network. */
     private boolean checkConnectedToOpenWifi(Context context) {
         boolean connectedToOpenNetwork = false;
 

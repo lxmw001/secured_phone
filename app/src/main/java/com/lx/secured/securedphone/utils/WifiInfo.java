@@ -1,4 +1,4 @@
-package com.lx.secured.securedphone.system;
+package com.lx.secured.securedphone.utils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
