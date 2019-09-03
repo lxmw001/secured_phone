@@ -7,9 +7,9 @@ import android.util.Log;
 
 import com.lx.secured.securedphone.utils.WifiInfo;
 
-public class MainService extends Service {
+public class WifiService extends Service {
 
-    private static String TAG = MainService.class.toString();
+    private static String TAG = WifiService.class.toString();
 
     @Override
     public IBinder onBind(Intent arg0) {

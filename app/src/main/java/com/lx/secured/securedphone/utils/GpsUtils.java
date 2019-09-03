@@ -89,6 +89,7 @@ public class GpsUtils {
                     });
         }
     }
+
     public interface onGpsListener {
         void gpsStatus(boolean isGPSEnable);
     }

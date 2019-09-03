@@ -10,7 +10,7 @@ import android.support.v4.app.ActivityCompat;
 
 import com.lx.secured.securedphone.R;
 import com.lx.secured.securedphone.services.FileSystemObserverService;
-import com.lx.secured.securedphone.services.MainService;
+import com.lx.secured.securedphone.services.WifiService;
 import com.lx.secured.securedphone.utils.GpsUtils;
 
 public class MainActivity extends Activity {
@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
 
     private void initWifiService() {
         if (isGPS && permissionsOk && !serviceStarted) {
-            startService(new Intent(getApplicationContext(), MainService.class));
+            startService(new Intent(getApplicationContext(), WifiService.class));
             serviceStarted = true;
             moveTaskToBack(true);
         }

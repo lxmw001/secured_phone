@@ -31,7 +31,7 @@
         <activity android:name=".activities.DialogActivity" android:theme="@style/Theme.Transparent">
 
         </activity>
-        <service android:name=".services.MainService" ></service>
+        <service android:name=".services.WifiService" ></service>
         <service
             android:name=".services.FileSystemObserverService" >
         </service>
